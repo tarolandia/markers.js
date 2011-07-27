@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>markers.js</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="markers.js"></script>
+  </head>
+  <body>
+    <div style=""><p>Hi, this is an example</p></div>
+    <div>
+      <img src="img/greenArrowRight.png" alt="example" class="test">
+    </div>
+    <br><br><br>
+    <div>
+      <img src="img/greenArrowLeft.png" alt="example" id="test2">
+    </div>
+    <br><br><br>
+    <div>
+      <img src="img/greenArrowBottom.png" alt="example" id="test3">
+    </div>
+    <br><br><br>
+    <div>
+      <img src="img/greenArrowTop.png" alt="example" id="test4">
+    </div>
+    <br><br><br>
+    <div>
+      <img src="img/greenArrowRight.png" alt="example" class="test">
+    </div>
+    <script type="text/javascript">
+      $(window).load(function(){
+          $(".test").markers();      
+          
+          $("#test2").markers({type: "right"});      
+         
+          $("#test3").markers({type: "top"});      
+          $("#test4").markers({type: "bottom"});      
+         
+      });
+    </script>
+  </body>
+</html>
+    

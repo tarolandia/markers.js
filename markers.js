@@ -4,7 +4,9 @@
 	var methods = {
 		init : function( options ) { 
 			var settings = {
-			   
+			  type: "left",
+			  time: 400,
+			  pxmove: "5px"
 			};
 			
 			return this.each(function(){
@@ -21,18 +23,43 @@
 				    left: $this.position().left
 				},
 				    html = $this.clone(),
-				    rand = new Date().getTime();
+				    rand = Math.random(0,999)+ new Date().getTime(),
+				    obj1 = {}, 
+				    obj2 = {};
 			
-				var newElm = $('<div class="markers-animate-'+rand+'">').css({position:'absolute', width:space.width+"px",height: space.height+"px",top: space.top+"px",left:space.left+"px" }).append(html).appendTo($this.parent());
-        $this.hide();
+				var newElm = $('<div class="markers-animate-'+rand+'">').css({width:space.width+"px",height: space.height+"px"});
+				var replacer = newElm.clone();
+				newElm.css({position:'absolute' ,top: space.top+"px",left:space.left+"px" });
 
-       
+
+
+				newElm.append(html).appendTo($this.parent());
+        $this.hide().parent().append(replacer);
+        
+        switch(settings.type){
+          case("left"): 
+            console.log(settings.type)
+            obj1 = {left: "-=" + settings.pxmove};
+            obj2 = {left: "+=" + settings.pxmove};
+            break;
+          case("right"):
+            obj1 = {left: "+=" + settings.pxmove};
+            obj2 = {left: "-=" + settings.pxmove};
+            break;
+          case("top"): 
+            obj1 = {top: "-=" + settings.pxmove};
+            obj2 = {top: "+=" + settings.pxmove};
+            break;
+          case("bottom"): 
+            obj1 = {top: "+=" + settings.pxmove};
+            obj2 = {top: "-=" + settings.pxmove};
+            break;
+          default: return 0; break;
+        } 
       
-       setInterval(function(){ 
-                newElm.animate({left: "-=5px"},"fast", function(){ 
-                    newElm.animate({left: "+=5px"},"fast") 
-                  }) 
-                },500);
+        setInterval(function(){ 
+                  newElm.animate(obj1,settings.time).animate(obj2,settings.time);
+                },(settings.time*2)+500);
        
 				
 			})
