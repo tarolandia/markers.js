@@ -1,39 +1,39 @@
 (function ($) {
-	var privateFunc = function(  ) {
-	}
-	var methods = {
-		init : function( options ) { 
-			var settings = {
-			  type: "left",
-			  time: 400,
-			  pxmove: "5px"
-			};
-			
-			return this.each(function(){
-				
-				var $this = $(this);
-				if ( options ) { 
-					$.extend( settings, options );
-				}
+  var privateFunc = function(  ) {
+  }
+  var methods = {
+    init : function( options ) { 
+      var settings = {
+        type: "left",
+        time: 400,
+        pxmove: "5px"
+      };
+      
+      return this.each(function(){
+        
+        var $this = $(this);
+        if ( options ) { 
+          $.extend( settings, options );
+        }
 
-				var space = {
-				    width: $this.width(),
-				    height: $this.height(),
-				    top: $this.position().top,
-				    left: $this.position().left
-				},
-				    html = $this.clone(),
-				    rand = Math.random(0,999)+ new Date().getTime(),
-				    obj1 = {}, 
-				    obj2 = {};
-			
-				var newElm = $('<div class="markers-animate-'+rand+'">').css({width:space.width+"px",height: space.height+"px"});
-				var replacer = newElm.clone();
-				newElm.css({position:'absolute' ,top: space.top+"px",left:space.left+"px" });
+        var space = {
+            width: $this.width(),
+            height: $this.height(),
+            top: $this.position().top,
+            left: $this.position().left
+        },
+            html = $this.clone(),
+            rand = Math.random(0,999)+ new Date().getTime(),
+            obj1 = {}, 
+            obj2 = {};
+      
+        var newElm = $('<div class="markers-animate-'+rand+'">').css({width:space.width+"px",height: space.height+"px"});
+        var replacer = newElm.clone();
+        newElm.css({position:'absolute' ,top: space.top+"px",left:space.left+"px" });
 
 
 
-				newElm.append(html).appendTo($this.parent());
+        newElm.append(html).appendTo($this.parent());
         $this.hide().parent().append(replacer);
         
         switch(settings.type){
@@ -61,31 +61,31 @@
                   newElm.animate(obj1,settings.time).animate(obj2,settings.time);
                 },(settings.time*2)+500);
        
-				
-			})
-		},
-		reset : function( ) { 
-			
-			return this.each(function(){
-			
-				var $this = $(this);
+        
+      })
+    },
+    reset : function( ) { 
+      
+      return this.each(function(){
+      
+        var $this = $(this);
 
-			})
-		},
-		destroy : function( ) { 
-			return this.each(function(){
+      })
+    },
+    destroy : function( ) { 
+      return this.each(function(){
 
-				var $this = $(this);
-			})
-		} 
-	};       
-	$.fn.markers = function( method ) {      
-			if ( methods[method] ) {
-			  return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
-			} else if ( typeof method === 'object' || ! method ) {
-			  return methods.init.apply( this, arguments );
-			} else {
-			  $.error( 'Method ' +  method + ' does not exist on jQuery.myPlugin' );
-			}
-	};
+        var $this = $(this);
+      })
+    } 
+  };       
+  $.fn.markers = function( method ) {      
+      if ( methods[method] ) {
+        return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+      } else if ( typeof method === 'object' || ! method ) {
+        return methods.init.apply( this, arguments );
+      } else {
+        $.error( 'Method ' +  method + ' does not exist on jQuery.myPlugin' );
+      }
+  };
 })(jQuery);
