@@ -4,9 +4,13 @@
   var methods = {
     init : function( options ) { 
       var settings = {
-        type: "left",
+        repeat: 0,
+        onFinish: function() {},
+        animation: "left",
         time: 400,
-        pxmove: "5px"
+        pxmove: "5px",
+        replace: false,
+        delay: 7
       };
       
       return this.each(function(){
@@ -22,7 +26,7 @@
             top: $this.position().top,
             left: $this.position().left
         },
-            html = $this.clone(),
+            html = $this.clone().css({top: 0, left: 0}),
             rand = Math.random(0,999)+ new Date().getTime(),
             obj1 = {}, 
             obj2 = {};
@@ -34,11 +38,13 @@
 
 
         newElm.append(html).appendTo($this.parent());
-        $this.hide().parent().append(replacer);
-        
-        switch(settings.type){
+        if( settings.replace ) {
+          $this.parent().append(replacer);
+        }    
+        $this.hide();
+                
+        switch(settings.animation){
           case("left"): 
-            console.log(settings.type)
             obj1 = {left: "-=" + settings.pxmove};
             obj2 = {left: "+=" + settings.pxmove};
             break;
@@ -59,7 +65,7 @@
       
         setInterval(function(){ 
                   newElm.animate(obj1,settings.time).animate(obj2,settings.time);
-                },(settings.time*2)+500);
+                },(settings.time*2)+settings.delay);
        
         
       })

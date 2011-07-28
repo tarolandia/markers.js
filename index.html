@@ -5,36 +5,23 @@
     <title>markers.js</title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script type="text/javascript" src="markers.js"></script>
+    <style type="text/css">
+      .mark { position: absolute;z-index:10;}
+      #map {position: relative;} 
+    </style>
   </head>
   <body>
     <div style=""><p>Hi, this is an example</p></div>
-    <div>
-      <img src="img/greenArrowRight.png" alt="example" class="test">
-    </div>
-    <br><br><br>
-    <div>
-      <img src="img/greenArrowLeft.png" alt="example" id="test2">
-    </div>
-    <br><br><br>
-    <div>
-      <img src="img/greenArrowBottom.png" alt="example" id="test3">
-    </div>
-    <br><br><br>
-    <div>
-      <img src="img/greenArrowTop.png" alt="example" id="test4">
-    </div>
-    <br><br><br>
-    <div>
-      <img src="img/greenArrowRight.png" alt="example" class="test">
+    <div id="map">
+      <img src="img/map.jpg" alt="example">
+      <img src="img/arrow-down.png" alt="example" class="test mark" style="top:76px;left:280px">
+      <img src="img/arrow-down.png" alt="example" class="test mark" style="top:257px;left:49px" >
+      <img src="img/arrow-down.png" alt="example" class="test mark" style="top:271px;left:299px" >
+      <img src="img/arrow-down.png" alt="example" class="test mark" style="top:271px;left:257px" >
     </div>
     <script type="text/javascript">
       $(window).load(function(){
-          $(".test").markers();      
-          
-          $("#test2").markers({type: "right"});      
-         
-          $("#test3").markers({type: "top"});      
-          $("#test4").markers({type: "bottom"});      
+          $(".test").markers({animation: "top", time: 300});      
          
       });
     </script>
